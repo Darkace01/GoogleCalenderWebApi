@@ -29,7 +29,7 @@ namespace CalendarQuickstart
             {
                 // The file token.json stores the user's access and refresh tokens, and is created
                 // automatically when the authorization flow completes for the first time.
-                string credPath = "token.json";
+                string credPath = "token50.json";
                 credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
                     GoogleClientSecrets.Load(stream).Secrets,
                     Scopes,
@@ -66,11 +66,10 @@ namespace CalendarQuickstart
                 foreach (var eventItem in events.Items)
                 {
                     string when = eventItem.Start.DateTime.ToString();
-                    if (String.IsNullOrEmpty(when))
-                    {
-                        when = eventItem.Start.Date;
-                    }
-                    Console.WriteLine("{0} ({1})", eventItem.Summary, when);
+                    string end = eventItem.End.DateTime.ToString();
+
+                    
+                    Console.WriteLine("{0} \n Starts on: {1} \n Ends: {2} \n Location: {3} \n" , eventItem.Summary , when, end, eventItem.Location);
                 }
 
             }
